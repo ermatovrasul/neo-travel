@@ -1,0 +1,106 @@
+
+@import "tailwindcss";
+
+
+@theme {
+  --color-primary-red: #e11d48;
+  --color-hover-red: #be123c;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .search-input-field {
+    @apply w-full p-3 bg-white rounded-xl border-none focus:ring-2 focus:ring-red-400 outline-none transition-all text-sm text-gray-700;
+  }
+
+  .btn-primary {
+    @apply bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-lg shadow-red-100;
+  }
+
+  .ticket-card-hover {
+    @apply hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e11d48;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #be123c;
+}
+
+.react-datepicker {
+  font-family: inherit !important;
+  border: none !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  padding: 8px !important;
+  background-color: rgb(253, 251, 251) !important;
+}
+
+.react-datepicker__header {
+  background-color: white !important;
+  border-bottom: none !important;
+  padding-top: 12px !important;
+}
+
+.react-datepicker__day-name {
+  color: #0e0f0f !important;
+  font-weight: 600 !important;
+}
+
+.react-datepicker__day {
+  border-radius: 10px !important;
+  transition: all 0.2s !important;
+}
+
+
+.react-datepicker__day--selected, 
+.react-datepicker__day--keyboard-selected {
+  background-color: #E11D48 !important;
+  color: rgb(6, 6, 6) !important;
+  font-weight: bold !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: #FEE2E2 !important;
+  color: #E11D48 !important;
+}
+
+
+.react-datepicker__children-container {
+  width: 240px !important;
+  margin: 0 !important;
+}
+
+
+.next-button:after, .prev-button:after {
+  display: none !important;
+}
+
+.next-button.swiper-button-disabled, .prev-button.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
