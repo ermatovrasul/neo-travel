@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 export const Navbar = () => {
     return (
-        <div className="max-w-7xl">
+        <div className="max-w-7xl mx-auto">
           <nav className="flex flex-row justify-between  mx-auto items-center bg-[#F9FAFB] rounded-2xl px-4 py-4 mt-4">
                 <Image src="/icon/logo.svg" alt='icon'  width={52} height={52}/>
                 <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-600">

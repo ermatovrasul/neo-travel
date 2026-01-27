@@ -4,7 +4,6 @@ import { PassengerSeatCard } from "@/components/seats/PassengerSeatCard";
 import { AirplaneMap } from "@/components/seats/AirplaneMap";
 
 export default function SeatSelectionPage() {
-  // passengers үчүн типти (any[]) кошуп койдук, бул катаны жок кылат
   const [passengers, setPassengers] = useState<any[]>([
     { id: 1, name: "Иванов Иван", seat: null, price: 0 },
     { id: 2, name: "Иванова Анна", seat: null, price: 0 },
