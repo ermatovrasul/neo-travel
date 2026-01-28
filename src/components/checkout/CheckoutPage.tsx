@@ -2,33 +2,39 @@
 import Image from "next/image";
 import { useState } from "react";
 import { PriceDetailsModal } from "@/components/checkout/PriceDetailsModal";
+import { TicketModal } from "@/components/ticket/TicketModal";
 import Link from "next/link";
 
 export default function CheckoutPage() {
   const [isPriceOpen, setIsPriceOpen] = useState(false);
+  const [isTicketOpen, setIsTicketOpen] = useState(false); 
+  
   const totalPrice = "121 540 сом";
 
+  const ticketData = {
+    company: "S7 Airlines",
+    logo: "/icon/logo.svg"
+  };
+
   const FlightInfoCard = ({ label, type }: { label: string; type: "Туда" | "Обратно" }) => (
-    <div className="bg-white rounded-[32px] p-8 shadow-sm border border-gray-50 mb-6">
-      <div className="flex justify-between items-center mb-8">
-        <div className="flex items-center gap-4">
-             <Image src="/icon/logo.svg" alt="logo" width={50} height={50} className="rounded-full" />
+    <div className="bg-white rounded-2xl md:rounded-[32px] p-5 md:p-8 shadow-sm border border-gray-50 mb-4 md:mb-6">
+      <div className="flex justify-between items-center mb-6 md:mb-8">
+        <div className="flex items-center gap-3 md:gap-4">
+          <Image src="/icon/logo.svg" alt="logo" width={40} height={40} className="rounded-full md:w-[50px] md:h-[50px]" />
           <div>
-            <p className="font-bold text-gray-900 text-lg">S7 Airlines</p>
-            <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Эконом</p>
+            <p className="font-bold text-gray-900 text-base md:text-lg">S7 Airlines</p>
+            <p className="text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-widest">Эконом</p>
           </div>
         </div>
-        <span className="text-sm font-black text-green-500 uppercase tracking-widest">{type}</span>
+        <span className="text-xs md:text-sm font-black text-green-500 uppercase tracking-widest">{type}</span>
       </div>
-
-      <div className="relative flex justify-between items-center px-4">
-        <div className="text-left w-1/4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:px-4">
+        <div className="text-left w-full md:w-1/4">
           <p className="font-black text-xl text-gray-700 leading-tight">Бишкек</p>
-          <p className="text-md font-bold text-gray-500">14 фев, 12:20</p>
-          <p className="text-xs text-gray-400 font-bold">BSZ, Манас</p>
+          <p className="text-sm md:text-md font-bold text-gray-500">14 фев, 12:20</p>
+          <p className="text-[11px] md:text-xs text-gray-400 font-bold">BSZ, Манас</p>
         </div>
-
-        <div className="flex-1 max-w-6xl flex flex-col items-center px-1 relative">
+        <div className="hidden md:flex flex-1 max-w-6xl flex-col items-center px-1 relative">
           <div className="w-full flex items-center justify-center mb-1">
              <div className="h-[2px] w-full bg-gray-100 dashed-line relative">
                 <div className="absolute left-0 -top-1 w-2.5 h-2.5 rounded-full border-2 border-red-500 bg-white"></div>
@@ -43,38 +49,38 @@ export default function CheckoutPage() {
           <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Без пересадок</span>
         </div>
 
-        <div className="text-right w-1/4">
+        <div className="text-left md:text-right w-full md:w-1/4">
           <p className="font-black text-xl text-gray-700 leading-tight">Москва</p>
-          <p className="text-md font-bold text-gray-500">14 фев, 21:00</p>
-          <p className="text-xs text-gray-400 font-bold">MOW, Домодедово</p>
+          <p className="text-sm md:text-md font-bold text-gray-500">14 фев, 21:00</p>
+          <p className="text-[11px] md:text-xs text-gray-400 font-bold">MOW, Домодедово</p>
         </div>
       </div>
     </div>
   );
 
   const PassengerForm = ({ number, title }: { number: number; title: string }) => (
-    <div className="bg-[#F9FAFB] rounded-[40px] p-10 mb-8">
-      <div className="flex justify-between items-center mb-10">
+    <div className="bg-[#F9FAFB] rounded-3xl md:rounded-[40px] p-6 md:p-10 mb-6 md:mb-8">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 md:mb-10">
         <div>
-          <h3 className="text-2xl font-black text-gray-900">Пассажир {number}</h3>
-          <p className="text-sm text-gray-400 font-bold">{title}</p>
+          <h3 className="text-xl md:text-2xl font-black text-gray-900">Пассажир {number}</h3>
+          <p className="text-xs md:text-sm text-gray-400 font-bold">{title}</p>
         </div>
-        <div className="flex gap-10 flex-row items-center bg-white/50 p-2 px-6 rounded-2xl">
-          <h2 className="text-xs font-black text-gray-400 uppercase">Пол:</h2>
-          <label className="flex items-center gap-3 cursor-pointer font-bold text-sm text-gray-700">
-            <input type="radio" name={`gender-${number}`} className="w-5 h-5 accent-red-500" /> Женский
+        <div className="flex gap-4 md:gap-10 flex-row items-center bg-white/50 p-3 px-4 md:px-6 rounded-2xl w-full lg:w-auto overflow-x-auto">
+          <h2 className="text-[10px] md:text-xs font-black text-gray-400 uppercase whitespace-nowrap">Пол:</h2>
+          <label className="flex items-center gap-2 cursor-pointer font-bold text-xs md:text-sm text-gray-700 whitespace-nowrap">
+            <input type="radio" name={`gender-${number}`} className="w-4 h-4 md:w-5 md:h-5 accent-red-500" /> Женский
           </label>
-          <label className="flex items-center gap-3 cursor-pointer font-bold text-sm text-gray-700">
-            <input type="radio" name={`gender-${number}`} className="w-5 h-5 accent-red-500" /> Мужской
+          <label className="flex items-center gap-2 cursor-pointer font-bold text-xs md:text-sm text-gray-700 whitespace-nowrap">
+            <input type="radio" name={`gender-${number}`} className="w-4 h-4 md:w-5 md:h-5 accent-red-500" /> Мужской
           </label>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         {["ФИО", "Дата рождения", "Гражданство", "Тип паспорта", "Серия и номер паспорта", "Срок действия паспорта"].map((placeholder) => (
           <div key={placeholder} className="relative">
             <input 
               placeholder={placeholder} 
-              className="w-full bg-white py-5 px-6 rounded-2xl border-none text-sm font-bold shadow-sm outline-none placeholder:text-gray-300 focus:ring-2 ring-red-100 transition-all" 
+              className="w-full bg-white py-4 md:py-5 px-5 md:px-6 rounded-xl md:rounded-2xl border-none text-sm font-bold shadow-sm outline-none placeholder:text-gray-300 focus:ring-2 ring-red-100 transition-all" 
             />
           </div>
         ))}
@@ -83,79 +89,63 @@ export default function CheckoutPage() {
   );
 
   return (
-    <div className="min-h-screen bg-white pb-32 font-sans">
-      <div className="max-w-6xl mx-auto px-6 pt-12">
-        <div className="flex justify-between items-center mb-12 px-2">
-          <h1 className="text-[32px] font-black text-gray-900 tracking-tight leading-tight max-w-2xl">
+    <div className="min-h-screen bg-white pb-20 md:pb-32 font-sans overflow-x-hidden">
+
+      <div className="max-w-6xl mx-auto px-4 md:px-6 pt-8 md:pt-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 md:mb-12 px-2">
+          <h1 className="text-2xl md:text-[32px] font-black text-gray-900 tracking-tight leading-tight max-w-2xl">
             Детали маршрута Бишкек-Москва-Бишкек
           </h1>
-          <button className="bg-[#1A1A1A] text-white px-10 py-4 rounded-[22px] text-sm font-bold shadow-xl shadow-black/10 hover:bg-black transition-all active:scale-95">
+          <button 
+            onClick={() => setIsTicketOpen(true)}
+            className="w-full md:w-auto bg-[#1A1A1A] text-white px-8 md:px-10 py-4 rounded-xl md:rounded-[22px] text-sm font-bold shadow-xl shadow-black/10 hover:bg-black transition-all active:scale-95"
+          >
             Детали прелета
           </button>
         </div>
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <FlightInfoCard label="Бишкек-Москва" type="Туда" />
           <FlightInfoCard label="Москва-Бишкек" type="Обратно" />
         </div>
-        <div className="bg-[#F2F2F2] rounded-[32px] p-5 flex justify-end gap-5 my-16 shadow-inner relative">
-          <PriceDetailsModal 
-            isOpen={isPriceOpen} 
-            onClose={() => setIsPriceOpen(false)} 
-            totalPrice={totalPrice} 
-          />
-          
+        
+        <div className="bg-[#F2F2F2] rounded-2xl md:rounded-[32px] p-3 md:p-5 flex flex-col md:flex-row justify-end gap-3 md:gap-5 my-10 md:my-16 shadow-inner relative">
           <div 
-            className="flex bg-white rounded-[22px] px-8 py-4 items-center gap-8 cursor-pointer shadow-sm hover:shadow-md transition-all active:scale-95"
+            className="flex bg-white rounded-xl md:rounded-[22px] px-6 md:px-8 py-4 items-center justify-between md:justify-start gap-4 md:gap-8 cursor-pointer shadow-sm hover:shadow-md transition-all active:scale-95"
             onClick={() => setIsPriceOpen(true)}
           >
             <div className="flex items-center gap-3">
-               <span className="text-xl">🛒</span>
-               <span className="font-black text-2xl text-gray-900 tracking-tighter">{totalPrice}</span>
+               <span className="text-lg md:text-xl">🛒</span>
+               <span className="font-black text-xl md:text-2xl text-gray-900 tracking-tighter">{totalPrice}</span>
             </div>
             <span className="text-gray-300">
-              <svg width="16" height="10" viewBox="0 0 14 8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="12" height="8" viewBox="0 0 14 8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M1 1L7 7L13 1"/>
               </svg>
             </span>
           </div>
-          <Link href="/seats"><button className="bg-[#E11D48] text-white px-16 py-5 rounded-[24px] font-black text-xl hover:bg-[#BE123C] transition-all shadow-2xl shadow-red-200 active:scale-95">
-            Продолжить
-          </button></Link>
+          <Link href="/seats" className="w-full md:w-auto">
+            <button className="w-full bg-[#E11D48] text-white px-10 md:px-16 py-4 md:py-5 rounded-xl md:rounded-[24px] font-black text-lg md:text-xl hover:bg-[#BE123C] transition-all shadow-xl shadow-red-200 active:scale-95">
+              Продолжить
+            </button>
+          </Link>
         </div>
-        <div className="mt-24">
-          <h2 className="text-3xl font-black text-center mb-16 text-gray-900 uppercase tracking-[0.3em]">Пассажиры</h2>
+        <div className="mt-16 md:mt-24">
+          <h2 className="text-xl md:text-3xl font-black text-center mb-10 md:mb-16 text-gray-900 uppercase tracking-[0.1em] md:tracking-[0.3em]">Пассажиры</h2>
           <PassengerForm number={1} title="Взрослый, старше 12 лет" />
           <PassengerForm number={2} title="Ребенок, старше 2-х лет" />
           <PassengerForm number={3} title="Младенец, младше 2-х лет" />
         </div>
-        <div className="mt-28">
-          <h2 className="text-3xl font-black text-center mb-16 text-gray-900 uppercase tracking-[0.3em]">Контактные данные</h2>
-          <div className="bg-[#F9FAFB] rounded-[40px] p-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-              {["Контактное лицо", "Контактный телефон", "Электронная почта"].map(p => (
-                <input 
-                  key={p} 
-                  placeholder={p} 
-                  className="bg-white p-6 rounded-2xl border-none text-sm font-bold shadow-sm outline-none placeholder:text-gray-300" 
-                />
-              ))}
-            </div>
-            <div className="space-y-6 max-w-4xl">
-              {[
-                "Я хочу зарегистрироваться на сайте, используя введенные мной данные, и согласен(на) получать информацию об акциях и специальных предложениях на электронную почту",
-                "Я согласен получать информацию об акциях и специальных предложениях на электронную почту"
-              ].map((text, i) => (
-                <label key={i} className="flex items-start gap-5 text-[13px] font-bold text-gray-500 cursor-pointer leading-relaxed group">
-                  <div className="relative flex items-center">
-                    <input type="checkbox" className="peer mt-1 w-6 h-6 accent-red-500 rounded-md border-gray-200 shadow-sm transition-all" />
-                  </div>
-                  <span className="group-hover:text-gray-700 transition-colors">{text}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
+      <TicketModal 
+        isOpen={isTicketOpen} 
+        onClose={() => setIsTicketOpen(false)} 
+        ticket={ticketData} 
+      />
+      <PriceDetailsModal 
+        isOpen={isPriceOpen} 
+        onClose={() => setIsPriceOpen(false)} 
+        totalPrice={totalPrice} 
+      />
     </div>
   );
 }

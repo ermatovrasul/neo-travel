@@ -10,7 +10,6 @@ interface ModalProps {
 export const TicketModal = ({ isOpen, onClose, ticket }: ModalProps) => {
   if (!isOpen) return null;
 
-  // Рейс блогун өзүнчө функция катары чыгарып алдык (Туда жана Обратно үчүн)
   const FlightSegment = ({ cityFrom, cityTo, airportFrom, airportTo, date, timeStart, timeEnd, flightNo }: any) => (
     <div className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-50">
       <div className="flex justify-between items-start mb-6">
@@ -31,8 +30,6 @@ export const TicketModal = ({ isOpen, onClose, ticket }: ModalProps) => {
           <p className="text-[13px] text-gray-400 font-medium">9 часов в пути</p>
         </div>
       </div>
-
-      {/* Маршрут линиясы */}
       <div className="relative pl-8 space-y-10">
         <div className="absolute left-[7px] top-2 bottom-2 w-[1.5px] bg-[#E11D48]"></div>
         
@@ -62,7 +59,7 @@ export const TicketModal = ({ isOpen, onClose, ticket }: ModalProps) => {
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-[4px] animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/40 backdrop-blur-[4px] animate-in fade-in duration-300">
       <div className="bg-[#F9FAFB] rounded-[32px] w-full max-w-[850px] max-h-[90vh] overflow-y-auto shadow-2xl relative">
         <button onClick={onClose} className="absolute top-6 right-6 z-10 p-2 text-gray-300 hover:text-gray-600 transition-colors">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12" /></svg>

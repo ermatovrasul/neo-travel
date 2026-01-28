@@ -43,7 +43,6 @@ export default function ReportPage() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 font-sans text-[#1A1C1E]">
-      {/* Hero Image */}
       <div className="w-full mb-8 overflow-hidden rounded-[24px] md:rounded-[32px]">
         <Image 
           src="/image/Frame 1261155338 (1).png" 
@@ -54,8 +53,6 @@ export default function ReportPage() {
           priority
         />
       </div>
-
-      {/* Navigation */}
       <nav className="flex overflow-x-auto no-scrollbar gap-x-8 mb-10 border-b border-gray-100 pb-0 whitespace-nowrap">
         {navItems.map((item) => (
           <Link 
@@ -73,12 +70,8 @@ export default function ReportPage() {
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-        
-        {/* Left Side: Form and Info */}
         <div className="lg:col-span-8 space-y-10">
           <h1 className="text-2xl md:text-3xl font-black">Как работает добровольное донесение?</h1>
-
-          {/* Info Blocks */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-[#F2F4F7] p-6 rounded-[24px]">
               <h3 className="font-bold text-[16px] mb-3">Если вы заметили что-то странное</h3>
@@ -93,8 +86,6 @@ export default function ReportPage() {
               </p>
             </div>
           </div>
-
-          {/* Form Section */}
           <div className="space-y-6 pt-4">
             <h2 className="text-[18px] font-bold">Опишите проблему и прикрепите файл</h2>
             
@@ -115,8 +106,6 @@ export default function ReportPage() {
             </button>
           </div>
         </div>
-
-        {/* Right Side: Accordion */}
         <div className="lg:col-span-4 lg:sticky lg:top-8 h-fit">
           <Accordion items={sideMenuData} />
         </div>
