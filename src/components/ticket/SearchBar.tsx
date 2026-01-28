@@ -42,7 +42,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="bg-[#F2F2F2] p-0 md:p-8 md:p-6 rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 md:gap-1 items-center shadow-sm max-w-7xl mx-auto relative !overflow-visible z-50"> 
+    <div className="bg-[#F2F2F2] p-0 md:p-8 md:p-6 rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 md:gap-1 items-center shadow-sm max-w-7xl mx-auto relative !overflow-visible z-50"> 
       <div className="h-12 bg-white rounded-xl px-4 py-2 flex flex-col items-start border-r border-gray-100 w-full">
         <input type="text" placeholder="Бишкек" className="w-full outline-none text-sm font-semibold text-gray-700 h-full" />
       </div>
