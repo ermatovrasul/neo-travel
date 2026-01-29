@@ -51,7 +51,7 @@ export function InfoSection() {
                   height={180}
                 />
               </div>
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md z-20 group-hover:bg-red-500 transition-colors">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md z-20 group-hover:bg-red-500 transition-colors">
                 <Image 
                   src="/icon/Frame 345.svg" 
                   alt="Arrow" 

@@ -4,10 +4,23 @@ import { useState, useRef, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 // @ts-ignore
 import "react-datepicker/dist/react-datepicker.css";
-import { Calendar, ChevronDown, Plus, Minus } from 'lucide-react';
+import { Calendar, ChevronDown, Plus, Minus, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
+const CITIES = [
+  { name: "Бишкек", code: "FRU", country: "Кыргызстан" },
+  { name: "Ош", code: "OSS", country: "Кыргызстан" },
+  { name: "Москва", code: "MOW", country: "Россия" },
+  { name: "Алматы", code: "ALA", country: "Казахстан" },
+  { name: "Стамбул", code: "IST", country: "Турция" },
+];
+
 export default function SearchBar() {
+  const [fromCity, setFromCity] = useState("Бишкек");
+  const [toCity, setToCity] = useState("");
+  const [showFromCities, setShowFromCities] = useState(false);
+  const [showToCities, setShowToCities] = useState(false);
+
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -19,14 +32,17 @@ export default function SearchBar() {
   const [classType, setClassType] = useState('Эконом');
   
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const fromRef = useRef<HTMLDivElement>(null);
+  const toRef = useRef<HTMLDivElement>(null);
   const startPickerRef = useRef<any>(null);
   const endPickerRef = useRef<any>(null);
 
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) setIsOpen(false);
+      if (fromRef.current && !fromRef.current.contains(event.target as Node)) setShowFromCities(false);
+      if (toRef.current && !toRef.current.contains(event.target as Node)) setShowToCities(false);
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -39,15 +55,56 @@ export default function SearchBar() {
     }));
   };
 
+  const CityList = ({ onSelect }: { onSelect: (name: string) => void }) => (
+    <div className="absolute top-[calc(100%+8px)] left-0 w-full md:w-[250px] bg-white rounded-2xl shadow-2xl z-[110] border border-gray-100 overflow-hidden animate-in fade-in zoom-in duration-200">
+      <div className="p-2">
+        {CITIES.map((city) => (
+          <div 
+            key={city.code}
+            onClick={() => onSelect(city.name)}
+            className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-xl cursor-pointer transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <MapPin size={16} className="text-gray-400" />
+              <div>
+                <p className="text-sm font-bold text-gray-800">{city.name}</p>
+                <p className="text-[10px] text-gray-400">{city.country}</p>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-gray-300">{city.code}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="bg-[#F2F2F2] p-4 md:p-6 rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 items-center shadow-sm max-w-7xl mx-auto relative !overflow-visible z-[100]"> 
-      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center border-r border-gray-100">
-        <input type="text" placeholder="Бишкек" className="w-full h-full outline-none text-sm font-semibold text-gray-700" />
+      
+      {/* ОТКУДА */}
+      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center relative" ref={fromRef}>
+        <input 
+          type="text" 
+          value={fromCity}
+          onFocus={() => setShowFromCities(true)}
+          readOnly
+          placeholder="Откуда" 
+          className="w-full h-full outline-none text-sm font-semibold text-gray-700 cursor-pointer" 
+        />
+        {showFromCities && <CityList onSelect={(name) => { setFromCity(name); setShowFromCities(false); }} />}
       </div>
-      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center border-r border-gray-100">
-        <input type="text" placeholder="Куда" className="w-full h-full outline-none text-sm font-semibold text-gray-700" />
+      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center relative" ref={toRef}>
+        <input 
+          type="text" 
+          value={toCity}
+          onFocus={() => setShowToCities(true)}
+          readOnly
+          placeholder="Куда" 
+          className="w-full h-full outline-none text-sm font-semibold text-gray-700 cursor-pointer" 
+        />
+        {showToCities && <CityList onSelect={(name) => { setToCity(name); setShowToCities(false); }} />}
       </div>
-      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center border-r border-gray-100 relative">
+      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center relative">
         <DatePicker
           ref={startPickerRef}
           selected={startDate}
@@ -56,23 +113,13 @@ export default function SearchBar() {
           className="w-full outline-none text-sm font-semibold text-gray-700 cursor-pointer bg-transparent"
           dateFormat="dd MMM"
           popperPlacement="bottom"
-          popperProps={{
-            strategy: "fixed" 
-          }}
         >
-          <div className="p-3 border-t border-gray-100 bg-white">
-            <button 
-              type="button"
-              onClick={() => startPickerRef.current.setOpen(false)}
-              className="w-full bg-[#202020] text-white py-2.5 rounded-xl text-sm font-bold active:scale-95 transition-all"
-            >
-              Найти
-            </button>
-          </div>
+          <button className="w-full bg-[#202020] text-white py-2.5 rounded-xl text-sm font-bold active:scale-95 transition-all">найти</button>
         </DatePicker>
         <Calendar className="absolute right-3 w-4 h-4 text-gray-300 pointer-events-none" />
       </div>
-      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center border-r border-gray-100 relative">
+
+      <div className="h-12 bg-white rounded-xl px-4 py-2 flex items-center relative">
         <DatePicker
           ref={endPickerRef}
           selected={endDate}
@@ -81,22 +128,13 @@ export default function SearchBar() {
           className="w-full outline-none text-sm font-semibold text-gray-700 cursor-pointer bg-transparent"
           dateFormat="dd MMM"
           popperPlacement="bottom"
-          popperProps={{
-            strategy: "fixed"
-          }}
         >
-          <div className="p-3 border-t border-gray-100 bg-white">
-            <button 
-              type="button"
-              onClick={() => endPickerRef.current.setOpen(false)}
-              className="w-full bg-[#202020] text-white py-2.5 rounded-xl text-sm font-bold active:scale-95 transition-all"
-            >
-              Найти
-            </button>
-          </div>
+          <button className="w-full bg-[#202020] text-white py-2.5 rounded-xl text-sm font-bold active:scale-95 transition-all">найти</button>
         </DatePicker>
         <Calendar className="absolute right-3 w-4 h-4 text-gray-300 pointer-events-none" />
       </div>
+
+
       <div className="h-12 relative w-full" ref={dropdownRef}>
         <div onClick={() => setIsOpen(!isOpen)} className="bg-white rounded-xl px-4 h-full flex flex-col justify-center cursor-pointer">
           <div className="flex items-center justify-between w-full">
@@ -130,7 +168,7 @@ export default function SearchBar() {
               ))}
             </div>
             <button onClick={() => setIsOpen(false)} className="w-full bg-[#202020] text-white py-3 rounded-xl text-sm font-bold active:scale-95 transition-all">
-              Найти
+              Готово
             </button>
           </div>
         )}

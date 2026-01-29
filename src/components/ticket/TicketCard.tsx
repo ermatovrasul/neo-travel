@@ -29,7 +29,7 @@ export default function TicketCard({
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tight">{label}</span>
+            <span className="text-[10px] font-bold text-gray-400  uppercase tracking-tight">{label}</span>
             <span className="text-[10px] px-1.5 py-0.5 bg-blue-50 text-blue-500 rounded font-bold">{type}</span>
           </div>
           <p className="text-sm font-bold text-gray-800">{f} — {t}</p>

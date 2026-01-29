@@ -10,6 +10,7 @@ export const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
+    {name:'Бронирование и управление', href:'/'},
     { name: "Полезная информация", href: "/" },
     { name: "О нас", href: "/about" },
     { name: "Контакты", href: "/contacts" },
@@ -26,9 +27,6 @@ export const Navbar = () => {
             height={40}
             className="md:w-[48px] md:h-[48px]"
           />
-          <span className="font-black text-lg md:text-xl tracking-tighter text-[#E11D48]">
-            NEO TRAVEL
-          </span>
         </Link>
         <div className="hidden lg:flex space-x-10 text-[13px] font-bold text-gray-500">
           {navLinks.map((link) => (
