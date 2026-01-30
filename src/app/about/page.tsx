@@ -16,32 +16,8 @@ export default function AboutPage() {
     { name: 'Контакты', href: '/contacts' },
   ];
 
-  const sideMenuData = [
-    {
-      id: 'trip',
-      title: 'О поездке',
-      links: [
-        { label: 'Путешествия с детьми', href: '/kids' },
-        { label: 'Добровольное донесение', href: '/report' },
-        { label: 'Опасные и запрещенные грузы', href: '/prohibited' },
-        { label: 'Стратегии планирования путешествия', href: '/planning' },
-        { label: 'Норма багажа', href: '/baggage' },
-        { label: 'Сообщения о качестве обслуживания и безопасности', href: '/feedback' },
-      ]
-    },
-    {
-      id: 'booking',
-      title: 'О бронировании',
-      links: [
-        { label: 'Политика бронирования авиабилетов', href: '/policy' },
-        { label: 'Перевозка питомцев', href: '/pets' },
-      ]
-    }
-  ];
-
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 font-sans text-[#1A1C1E]">
-      {/* Hero Image */}
       <div className="w-full mb-8 overflow-hidden rounded-[24px] md:rounded-[32px] shadow-sm">
         <Image 
           src="/image/Frame 1261155338 (1).png" 
@@ -52,8 +28,6 @@ export default function AboutPage() {
           priority 
         />
       </div>
-
-      {/* Navigation - Scrollable on Mobile */}
       <nav className="flex overflow-x-auto no-scrollbar gap-x-8 mb-10 border-b border-gray-100 pb-0 whitespace-nowrap">
         {navItems.map((item) => (
           <Link 
@@ -81,13 +55,11 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Right Side: Accordion */}
         <div className="lg:col-span-4  lg:top-8 h-fit">
-          <Accordion items={sideMenuData} />
+          <Accordion  />
         </div>
       </div>
 
-      {/* Partners Section */}
       <div className="mt-20">
         <h3 className="text-2xl font-black mb-10 text-center lg:text-left">Наши партнеры</h3>
         <div className=" overflow-hidden">

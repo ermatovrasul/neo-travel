@@ -16,28 +16,7 @@ export default function ContactsPage() {
     { name: 'Контакты', href: '/contacts' },
   ];
 
-  const sideMenuData = [
-    {
-      id: 'trip',
-      title: 'О поездке',
-      links: [
-        { label: 'Путешествия с детьми', href: '/kids' },
-        { label: 'Добровольное донесение', href: '/report' },
-        { label: 'Опасные и запрещенные грузы', href: '/prohibited' },
-        { label: 'Стратегии планирования путешествия', href: '/planning' },
-        { label: 'Норма багажа', href: '/baggage' },
-        { label: 'Сообщения о качестве обслуживания и безопасности', href: '/feedback' },
-      ]
-    },
-    {
-      id: 'booking',
-      title: 'О бронировании',
-      links: [
-        { label: 'Политика бронирования авиабилетов', href: '/policy' },
-        { label: 'Перевозка питомцев', href: '/pets' },
-      ]
-    }
-  ];
+
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 font-sans text-[#1A1C1E]">
@@ -106,20 +85,24 @@ export default function ContactsPage() {
               </div>
             </div>
             <div className="relative w-full h-full min-h-[350px] overflow-hidden rounded-[32px] border border-gray-100 shadow-sm">
-              <Image 
-                src="/image/Frame 1261155490.png" 
-                alt="map" 
-                fill 
-                className="object-cover"
-                priority
-              />
-            </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.7042531633515!2d74.58550731221775!3d42.87913360201389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec8237930129d%3A0x644f1e0020162002!2z0YPQu9C40YbQsCDQotC-0LrRgtC-0LPRg9C70LAsINCR0LjRiNC60LXQug!5e0!3m2!1sru!2skg!4v1715682000000!5m2!1sru!2skg"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Google Map"
+    className="absolute inset-0"
+  />
+</div>
 
           </div>
         </div>
 
         <div className="lg:col-span-4 lg:top-8 h-fit">
-          <Accordion items={sideMenuData} />
+          <Accordion  />
         </div>
       </div>
     </section>

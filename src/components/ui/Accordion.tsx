@@ -12,13 +12,34 @@ interface AccordionItem {
   title: string;
   links: AccordionLink[];
 }
-
-export const Accordion = ({ items }: { items: AccordionItem[] }) => {
+ const sideMenuData = [
+    {
+      id: 'trip',
+      title: 'О поездке',
+      links: [
+        { label: 'Путешествия с детьми', href: '/kidsTravel' },
+        { label: 'Добровольное донесение', href: '/report' },
+        { label: 'Опасные и запрещенные грузы', href: '/prohibited' },
+        { label: 'Стратегии планирования путешествия', href: '/planning' },
+        { label: 'Норма багажа', href: '/baggage' },
+        { label: 'Сообщения о качестве обслуживания и безопасности', href: '/feedback' },
+      ]
+    },
+    {
+      id: 'booking',
+      title: 'О бронировании',
+      links: [
+        { label: 'Политика бронирования авиабилетов', href: '/policy' },
+        { label: 'Перевозка питомцев', href: '/pets' },
+      ]
+    }
+  ];
+export const Accordion = () => {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
     <div className="w-full space-y-3">
-      {items.map((item) => (
+      {sideMenuData.map((item) => (
         <div key={item.id} className="overflow-hidden">
           <button
             onClick={() => setOpenId(openId === item.id ? null : item.id)}

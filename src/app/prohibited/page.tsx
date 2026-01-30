@@ -15,29 +15,6 @@ export default function ProhibitedPage() {
     { name: 'Контакты', href: '/contacts' },
   ];
 
-  const sideMenuData = [
-    {
-      id: 'trip',
-      title: 'О поездке',
-      links: [
-        { label: 'Путешествия с детьми', href: '/kids' },
-        { label: 'Добровольное донесение', href: '/report' },
-        { label: 'Опасные и запрещенные грузы', href: '/prohibited' },
-        { label: 'Стратегии планирования путешествия', href: '/planning' },
-        { label: 'Норма багажа', href: '/baggage' },
-        { label: 'Сообщения о качестве обслуживания и безопасности', href: '/feedback' },
-      ]
-    },
-    {
-      id: 'booking',
-      title: 'О бронировании',
-      links: [
-        { label: 'Политика бронирования авиабилетов', href: '/policy' },
-        { label: 'Перевозка питомцев', href: '/pets' },
-      ]
-    }
-  ];
-
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 font-sans">
       <div className="w-full mb-8 overflow-hidden rounded-[24px] md:rounded-[32px] shadow-sm">
@@ -100,7 +77,7 @@ export default function ProhibitedPage() {
           </div>
         </div>
         <div className="lg:col-span-4  lg:top-8 h-fit">
-          <Accordion items={sideMenuData} />
+          <Accordion  />
         </div>
 
       </div>

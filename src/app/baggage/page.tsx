@@ -16,28 +16,6 @@ const BaggageSection = () => {
     { name: 'Контакты', href: '/contacts' },
   ];
   
-  const sideMenuData = [
-    {
-      id: 'trip',
-      title: 'О поездке',
-      links: [
-        { label: 'Путешествия с детьми', href: '/kids' },
-        { label: 'Добровольное донесение', href: '/report' },
-        { label: 'Опасные и запрещенные грузы', href: '/prohibited' },
-        { label: 'Стратегии планирования путешествия', href: '/planning' },
-        { label: 'Норма багажа', href: '/baggage' },
-        { label: 'Сообщения о качестве обслуживания и безопасности', href: '/feedback' },
-      ]
-    },
-    {
-      id: 'booking',
-      title: 'О бронировании',
-      links: [
-        { label: 'Политика бронирования авиабилетов', href: '/policy' },
-        { label: 'Перевозка питомцев', href: '/pets' },
-      ]
-    }
-  ];
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8 font-sans">
@@ -94,8 +72,6 @@ const BaggageSection = () => {
               </div>
             </div>
           </div>
-
-          {/* Зарегистрированный багаж */}
           <div className="flex flex-col">
             <h2 className="text-xl font-bold mb-6 text-gray-900">Зарегистрированный багаж</h2>
             <div className="bg-[#F8F9FA] p-6 md:p-8 rounded-[28px] border border-gray-100/50 overflow-hidden">
@@ -131,7 +107,7 @@ const BaggageSection = () => {
           </div>
         </div>
         <div className="lg:col-span-4  lg:top-8 h-fit">
-          <Accordion items={sideMenuData} />
+          <Accordion />
         </div>
 
       </div>
